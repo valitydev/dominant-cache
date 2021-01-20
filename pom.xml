@@ -23,6 +23,7 @@
         <dockerfile.registry>${env.REGISTRY}</dockerfile.registry>
         <shared.resources.version>0.3.8</shared.resources.version>
         <damsel.version>1.473-093c982</damsel.version>
+        <dominant-cache-proto.version>1.2-3320cc6</dominant-cache-proto.version>
         <woody.thrift.ver>1.1.22</woody.thrift.ver>
         <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
     </properties>
@@ -59,7 +60,11 @@
             <artifactId>serializer</artifactId>
             <version>0.6.11</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.rbkmoney</groupId>
+            <artifactId>dominant-cache-proto</artifactId>
+            <version>${dominant-cache-proto.version}</version>
+        </dependency>
         <!--spring-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -89,7 +94,6 @@
             <artifactId>jcs</artifactId>
             <version>1.3</version>
         </dependency>
-
 
 
         <!--third party-->

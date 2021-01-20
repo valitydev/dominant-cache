@@ -24,7 +24,9 @@ public class SnapshotCacheService {
     @Scheduled(fixedRateString = "${scheduling.fixed.rate}")
     public void putSnapshotToCache() throws TException {
         Reference reference = Reference.head(new Head());
+        log.info("Trying to get snapshot");
         Snapshot snapshot = dominantClient.checkout(reference);
+        log.info("Trying to put snapshot into cache: {}", snapshot);
         cache.put(CACHE_NAME, snapshot);
     }
 
