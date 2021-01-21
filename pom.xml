@@ -23,7 +23,7 @@
         <dockerfile.registry>${env.REGISTRY}</dockerfile.registry>
         <shared.resources.version>0.3.8</shared.resources.version>
         <damsel.version>1.473-093c982</damsel.version>
-        <dominant-cache-proto.version>1.2-3320cc6</dominant-cache-proto.version>
+        <dominant-cache-proto.version>1.4-9b3c7e9</dominant-cache-proto.version>
         <woody.thrift.ver>1.1.22</woody.thrift.ver>
         <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
     </properties>

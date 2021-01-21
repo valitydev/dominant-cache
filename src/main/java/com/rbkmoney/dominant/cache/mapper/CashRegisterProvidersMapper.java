@@ -32,7 +32,7 @@ public class CashRegisterProvidersMapper {
                 cashRegisterProvider.setName(cashRegisterProviderObject.getData().getName());
                 cashRegisterProvider.setDescription(cashRegisterProviderObject.getData().getDescription());
                 cashRegisterProvider.setProxy(getCashRegisterProviderProxy(cashRegisterProviderObject));
-                //TODO: uncomment when proto update cashRegisterProvider.setParameter(getCashRegisterProviderParameters(cashRegisterProviderObject));
+                cashRegisterProvider.setParameter(getCashRegisterProviderParameters(cashRegisterProviderObject));
                 cashRegisterProviderList.add(cashRegisterProvider);
             }
         }
