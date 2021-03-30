@@ -39,7 +39,8 @@ public class CashRegisterProvidersMapper {
         return cashRegisterProviderList;
     }
 
-    private static CashRegisterProviderProxy getCashRegisterProviderProxy(CashRegisterProviderObject cashRegisterProviderObject) {
+    private static CashRegisterProviderProxy getCashRegisterProviderProxy(
+            CashRegisterProviderObject cashRegisterProviderObject) {
         CashRegisterProviderProxy cashRegisterProviderProxy = new CashRegisterProviderProxy();
         Proxy proxy = cashRegisterProviderObject.getData().getProxy();
         cashRegisterProviderProxy.setRef(String.valueOf(proxy.getRef().getId()));
@@ -47,7 +48,8 @@ public class CashRegisterProvidersMapper {
         return cashRegisterProviderProxy;
     }
 
-    private static List<CashRegisterProviderParameter> getCashRegisterProviderParameters(CashRegisterProviderObject cashRegisterProviderObject) {
+    private static List<CashRegisterProviderParameter> getCashRegisterProviderParameters(
+            CashRegisterProviderObject cashRegisterProviderObject) {
         CashRegisterProviderParameter cashRegisterProviderParameter = new CashRegisterProviderParameter();
         List<ProviderParameter> providerParameterList = cashRegisterProviderObject.getData().getParamsSchema();
         List<CashRegisterProviderParameter> cashRegisterProviderParameterList = new ArrayList<>();
@@ -62,7 +64,8 @@ public class CashRegisterProvidersMapper {
         return cashRegisterProviderParameterList;
     }
 
-    private static CashRegisterProviderParameterType getCashRegisterProviderParameterType(ProviderParameter providerParameter) {
+    private static CashRegisterProviderParameterType getCashRegisterProviderParameterType(
+            ProviderParameter providerParameter) {
         ProviderParameterType providerParameterType = providerParameter.getType();
         if (providerParameterType.isSetStringType()) {
             return CashRegisterProviderParameterType.string_type;
@@ -70,6 +73,8 @@ public class CashRegisterProvidersMapper {
             return CashRegisterProviderParameterType.integer_type;
         } else if (providerParameterType.isSetPasswordType()) {
             return CashRegisterProviderParameterType.password_type;
-        } else return CashRegisterProviderParameterType.url_type;
+        } else {
+            return CashRegisterProviderParameterType.url_type;
+        }
     }
 }
