@@ -4,6 +4,7 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.rbkmoney.damsel.domain_config.Snapshot;
 import com.rbkmoney.damsel.dominant.cache.CashRegisterProvider;
 import com.rbkmoney.damsel.dominant.cache.Category;
+import com.rbkmoney.damsel.dominant.cache.ContractTemplate;
 import com.rbkmoney.damsel.dominant.cache.DocumentType;
 import com.rbkmoney.dominant.cache.DominantCacheApplication;
 import org.junit.Before;
@@ -73,5 +74,16 @@ public class DominantCacheHandlerTest {
         assertEquals("2", cashRegisterProviderList.get(2).getRef());
         assertEquals("0", cashRegisterProviderList.get(0).getProxy().getRef());
         assertEquals("proxyOptionValue", cashRegisterProviderList.get(0).getProxy().getOptions().get("proxyOptionKey"));
+    }
+
+    @Test
+    public void getContractTemplatesTest() {
+        assertNotNull(cache.getIfPresent(CACHE_NAME));
+        List<ContractTemplate> contractTemplateList = dominantCacheHandler.getContractTemplates();
+        Collections.sort(contractTemplateList);
+        assertEquals(3, contractTemplateList.size());
+        assertEquals("ContractTemplate 2", contractTemplateList.get(2).getName());
+        assertEquals("ContractTemplateDescription 1", contractTemplateList.get(1).getDescription());
+        assertEquals("0", contractTemplateList.get(0).getRef());
     }
 }

@@ -6,22 +6,17 @@ import com.rbkmoney.damsel.domain.DomainObject;
 import com.rbkmoney.damsel.domain.Reference;
 import com.rbkmoney.damsel.domain_config.Snapshot;
 import com.rbkmoney.damsel.dominant.cache.DocumentType;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.rbkmoney.dominant.cache.constant.CashNameConstant.CACHE_NAME;
+import static com.rbkmoney.dominant.cache.mapper.utils.DomainObjectMapExtractor.getDomainObjectMap;
 
-@Slf4j
 public class DocumentTypesMapper {
 
     public static List<DocumentType> mapDocumentTypes(Cache<String, Snapshot> cache) {
-        log.info("Try to get document types");
-        Snapshot snapshot = cache.getIfPresent(CACHE_NAME);
-        assert snapshot != null;
-        Map<Reference, DomainObject> domainObjectMap = snapshot.getDomain();
+        Map<Reference, DomainObject> domainObjectMap = getDomainObjectMap(cache);
         List<DocumentType> documentTypeList = new ArrayList<>();
         for (Map.Entry<Reference, DomainObject> entry : domainObjectMap.entrySet()) {
             if (entry.getKey().isSetDocumentType()) {

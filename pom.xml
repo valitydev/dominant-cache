@@ -21,7 +21,7 @@
         <exposed.ports>${server.port}</exposed.ports>
         <dockerfile.base.service.tag>c0612d6052ac049496b72a23a04acb142035f249</dockerfile.base.service.tag>
         <dockerfile.registry>${env.REGISTRY}</dockerfile.registry>
-        <dominant-cache-proto.version>1.4-9b3c7e9</dominant-cache-proto.version>
+        <dominant-cache-proto.version>1.5-686541e</dominant-cache-proto.version>
     </properties>
 
     <dependencies>
