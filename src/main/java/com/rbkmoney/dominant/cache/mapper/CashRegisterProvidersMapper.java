@@ -12,28 +12,19 @@ import com.rbkmoney.damsel.dominant.cache.CashRegisterProvider;
 import com.rbkmoney.damsel.dominant.cache.CashRegisterProviderParameter;
 import com.rbkmoney.damsel.dominant.cache.CashRegisterProviderParameterType;
 import com.rbkmoney.damsel.dominant.cache.CashRegisterProviderProxy;
-import com.rbkmoney.dominant.cache.exception.DominantCacheException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.rbkmoney.dominant.cache.constant.CashNameConstant.CACHE_NAME;
+import static com.rbkmoney.dominant.cache.mapper.utils.DomainObjectMapExtractor.getDomainObjectMap;
 
 @Slf4j
 public class CashRegisterProvidersMapper {
 
     public static List<CashRegisterProvider> mapCashRegisterProviders(Cache<String, Snapshot> cache) {
-        Snapshot snapshot = cache.getIfPresent(CACHE_NAME);
-        Map<Reference, DomainObject> domainObjectMap;
-        if (snapshot != null) {
-            log.debug("Get domain to map cash register providers from snapshot version {}", snapshot.getVersion());
-            domainObjectMap = snapshot.getDomain();
-        } else {
-            throw new DominantCacheException("Snapshot not present into cache.");
-        }
+        Map<Reference, DomainObject> domainObjectMap = getDomainObjectMap(cache);
         List<CashRegisterProvider> cashRegisterProviderList = new ArrayList<>();
         for (Map.Entry<Reference, DomainObject> entry : domainObjectMap.entrySet()) {
             if (entry.getKey().isSetCashRegisterProvider()) {
