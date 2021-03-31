@@ -7,7 +7,6 @@ import com.rbkmoney.damsel.domain.DomainObject;
 import com.rbkmoney.damsel.domain.Reference;
 import com.rbkmoney.damsel.domain_config.Snapshot;
 import com.rbkmoney.damsel.dominant.cache.Category;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.Map;
 
 import static com.rbkmoney.dominant.cache.mapper.utils.DomainObjectMapExtractor.getDomainObjectMap;
 
-@Slf4j
 public class CategoriesMapper {
 
     public static List<Category> mapCategories(Cache<String, Snapshot> cache) {

@@ -12,7 +12,6 @@ import com.rbkmoney.damsel.dominant.cache.CashRegisterProvider;
 import com.rbkmoney.damsel.dominant.cache.CashRegisterProviderParameter;
 import com.rbkmoney.damsel.dominant.cache.CashRegisterProviderParameterType;
 import com.rbkmoney.damsel.dominant.cache.CashRegisterProviderProxy;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,6 @@ import java.util.Map;
 
 import static com.rbkmoney.dominant.cache.mapper.utils.DomainObjectMapExtractor.getDomainObjectMap;
 
-@Slf4j
 public class CashRegisterProvidersMapper {
 
     public static List<CashRegisterProvider> mapCashRegisterProviders(Cache<String, Snapshot> cache) {
