@@ -26,7 +26,7 @@ public class SnapshotCacheService {
         Reference reference = Reference.head(new Head());
         log.info("Trying to get snapshot");
         Snapshot snapshot = dominantClient.checkout(reference);
-        log.info("Trying to put snapshot into cache: {}", snapshot);
+        log.info("Trying to cache snapshot version: {}", snapshot.getVersion());
         cache.put(CACHE_NAME, snapshot);
     }
 

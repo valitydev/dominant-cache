@@ -4,6 +4,7 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.rbkmoney.damsel.domain_config.Snapshot;
 import com.rbkmoney.damsel.dominant.cache.CashRegisterProvider;
 import com.rbkmoney.damsel.dominant.cache.Category;
+import com.rbkmoney.damsel.dominant.cache.ContractTemplate;
 import com.rbkmoney.damsel.dominant.cache.DocumentType;
 import com.rbkmoney.damsel.dominant.cache.DominantCacheSrv;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import static com.rbkmoney.dominant.cache.mapper.CashRegisterProvidersMapper.mapCashRegisterProviders;
 import static com.rbkmoney.dominant.cache.mapper.CategoriesMapper.mapCategories;
+import static com.rbkmoney.dominant.cache.mapper.ContractTemplatesMapper.mapContractTemplates;
 import static com.rbkmoney.dominant.cache.mapper.DocumentTypesMapper.mapDocumentTypes;
 
 @Component
@@ -36,5 +38,10 @@ public class DominantCacheHandler implements DominantCacheSrv.Iface {
     @Override
     public List<CashRegisterProvider> getCashRegisterProviders() {
         return mapCashRegisterProviders(cache);
+    }
+
+    @Override
+    public List<ContractTemplate> getContractTemplates() {
+        return mapContractTemplates(cache);
     }
 }

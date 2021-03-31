@@ -15,6 +15,7 @@ public class DomainObjectTestUtils {
             createCategory(domain, i);
             createDocumentType(domain, i);
             createCashRegisterProvider(domain, i);
+            createContractTemplates(domain, i);
         }
         return domain;
     }
@@ -77,6 +78,21 @@ public class DomainObjectTestUtils {
         cashRegisterProviderObject.setData(cashRegisterProvider);
         DomainObject domainObject = new DomainObject();
         domainObject.setCashRegisterProvider(cashRegisterProviderObject);
+        domain.put(reference, domainObject);
+    }
+
+    private static void createContractTemplates(Map<Reference, DomainObject> domain, Integer i) {
+        Reference reference = new Reference();
+        reference.setContractTemplate(new ContractTemplateRef(i));
+        ContractTemplate contractTemplate = new ContractTemplate();
+        contractTemplate.setName("ContractTemplate " + i);
+        contractTemplate.setDescription("ContractTemplateDescription " + i);
+        contractTemplate.setTerms(new TermSetHierarchyRef(i));
+        ContractTemplateObject contractTemplateObject = new ContractTemplateObject();
+        contractTemplateObject.setRef(new ContractTemplateRef(i));
+        contractTemplateObject.setData(contractTemplate);
+        DomainObject domainObject = new DomainObject();
+        domainObject.setContractTemplate(contractTemplateObject);
         domain.put(reference, domainObject);
     }
 
