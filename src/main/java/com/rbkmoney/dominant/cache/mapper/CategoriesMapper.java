@@ -22,7 +22,7 @@ public class CategoriesMapper {
 
     public static List<Category> mapCategories(Cache<String, Snapshot> cache) {
         Snapshot snapshot = cache.getIfPresent(CACHE_NAME);
-        Map<Reference, DomainObject> domainObjectMap = new HashMap<>();
+        Map<Reference, DomainObject> domainObjectMap;
         if (snapshot != null) {
             log.debug("Get domain to map categories from snapshot version {}", snapshot.getVersion());
             domainObjectMap = snapshot.getDomain();

@@ -21,7 +21,7 @@ public class ContractTemplatesMapper {
 
     public static List<ContractTemplate> mapContractTemplates(Cache<String, Snapshot> cache) {
         Snapshot snapshot = cache.getIfPresent(CACHE_NAME);
-        Map<Reference, DomainObject> domainObjectMap = new HashMap<>();
+        Map<Reference, DomainObject> domainObjectMap;
         if (snapshot != null) {
             log.debug("Get domain to map contract templates from snapshot version {}", snapshot.getVersion());
             domainObjectMap = snapshot.getDomain();

@@ -21,7 +21,7 @@ public class DocumentTypesMapper {
 
     public static List<DocumentType> mapDocumentTypes(Cache<String, Snapshot> cache) {
         Snapshot snapshot = cache.getIfPresent(CACHE_NAME);
-        Map<Reference, DomainObject> domainObjectMap = new HashMap<>();
+        Map<Reference, DomainObject> domainObjectMap;
         if (snapshot != null) {
             log.debug("Get domain to map document types from snapshot version {}", snapshot.getVersion());
             domainObjectMap = snapshot.getDomain();
