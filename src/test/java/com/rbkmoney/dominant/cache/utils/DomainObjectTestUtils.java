@@ -2,10 +2,7 @@ package com.rbkmoney.dominant.cache.utils;
 
 import com.rbkmoney.damsel.domain.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DomainObjectTestUtils {
 
@@ -16,6 +13,8 @@ public class DomainObjectTestUtils {
             createDocumentType(domain, i);
             createCashRegisterProvider(domain, i);
             createContractTemplates(domain, i);
+            createCountries(domain, i);
+            createTradeBlocs(domain, i);
         }
         return domain;
     }
@@ -93,6 +92,38 @@ public class DomainObjectTestUtils {
         contractTemplateObject.setData(contractTemplate);
         DomainObject domainObject = new DomainObject();
         domainObject.setContractTemplate(contractTemplateObject);
+        domain.put(reference, domainObject);
+    }
+
+    private static void createCountries(Map<Reference, DomainObject> domain, Integer i) {
+        Reference reference = new Reference();
+        reference.setCountry(new CountryRef(CountryCode.findByValue(i)));
+        Country country = new Country();
+        country.setName("CountryName " + i);
+        Set<TradeBlocRef> tradeBlocs = new HashSet<>();
+        for (int ti = 0; ti < 3; ti++) {
+            tradeBlocs.add(new TradeBlocRef("TradeBloc " + ti));
+        }
+        country.setTradeBlocs(tradeBlocs);
+        CountryObject countryObject = new CountryObject();
+        countryObject.setRef(new CountryRef(CountryCode.findByValue(i)));
+        countryObject.setData(country);
+        DomainObject domainObject = new DomainObject();
+        domainObject.setCountry(countryObject);
+        domain.put(reference, domainObject);
+    }
+
+    private static void createTradeBlocs(Map<Reference, DomainObject> domain, Integer i) {
+        Reference reference = new Reference();
+        reference.setTradeBloc(new TradeBlocRef(String.valueOf(i)));
+        TradeBloc tradeBloc = new TradeBloc();
+        tradeBloc.setName("TradeBlocName " + i);
+        tradeBloc.setDescription("TradeBlocDescription " + i);
+        TradeBlocObject tradeBlocObject = new TradeBlocObject();
+        tradeBlocObject.setRef(new TradeBlocRef(String.valueOf(i)));
+        tradeBlocObject.setData(tradeBloc);
+        DomainObject domainObject = new DomainObject();
+        domainObject.setTradeBloc(tradeBlocObject);
         domain.put(reference, domainObject);
     }
 

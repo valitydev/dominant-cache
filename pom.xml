@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.rbkmoney</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>1.0.9</version>
+        <version>1.2.2</version>
     </parent>
 
     <artifactId>dominant-cache</artifactId>
@@ -21,7 +21,7 @@
         <exposed.ports>${server.port}</exposed.ports>
         <dockerfile.base.service.tag>c0612d6052ac049496b72a23a04acb142035f249</dockerfile.base.service.tag>
         <dockerfile.registry>${env.REGISTRY}</dockerfile.registry>
-        <dominant-cache-proto.version>1.5-686541e</dominant-cache-proto.version>
+        <dominant-cache-proto.version>1.6-cfafcc4</dominant-cache-proto.version>
     </properties>
 
     <dependencies>

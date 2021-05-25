@@ -2,27 +2,23 @@ package com.rbkmoney.dominant.cache.handler;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.rbkmoney.damsel.domain_config.Snapshot;
-import com.rbkmoney.damsel.dominant.cache.CashRegisterProvider;
-import com.rbkmoney.damsel.dominant.cache.Category;
-import com.rbkmoney.damsel.dominant.cache.ContractTemplate;
-import com.rbkmoney.damsel.dominant.cache.DocumentType;
+import com.rbkmoney.damsel.dominant.cache.*;
 import com.rbkmoney.dominant.cache.DominantCacheApplication;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.List;
 
 import static com.rbkmoney.dominant.cache.constant.CashNameConstant.CACHE_NAME;
 import static com.rbkmoney.dominant.cache.utils.DomainObjectTestUtils.createTestDomainObject;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = DominantCacheApplication.class)
 public class DominantCacheHandlerTest {
 
@@ -32,15 +28,15 @@ public class DominantCacheHandlerTest {
     @Autowired
     DominantCacheHandler dominantCacheHandler;
 
-    @Before
-    public void setup() {
+    @BeforeEach
+    void setup() {
         Snapshot snapshot = new Snapshot();
         snapshot.setDomain(createTestDomainObject());
         cache.put(CACHE_NAME, snapshot);
     }
 
     @Test
-    public void getCategoryTest() {
+    void getCategoryTest() {
         assertNotNull(cache.getIfPresent(CACHE_NAME));
         List<Category> categoryList = dominantCacheHandler.getCategories();
         Collections.sort(categoryList);
@@ -53,7 +49,7 @@ public class DominantCacheHandlerTest {
     }
 
     @Test
-    public void getDocumentTypeTest() {
+    void getDocumentTypeTest() {
         assertNotNull(cache.getIfPresent(CACHE_NAME));
         List<DocumentType> documentTypeList = dominantCacheHandler.getDocumentTypes();
         Collections.sort(documentTypeList);
@@ -64,7 +60,7 @@ public class DominantCacheHandlerTest {
     }
 
     @Test
-    public void getCashRegisterProviderTest() {
+    void getCashRegisterProviderTest() {
         assertNotNull(cache.getIfPresent(CACHE_NAME));
         List<CashRegisterProvider> cashRegisterProviderList = dominantCacheHandler.getCashRegisterProviders();
         Collections.sort(cashRegisterProviderList);
@@ -77,7 +73,7 @@ public class DominantCacheHandlerTest {
     }
 
     @Test
-    public void getContractTemplatesTest() {
+    void getContractTemplatesTest() {
         assertNotNull(cache.getIfPresent(CACHE_NAME));
         List<ContractTemplate> contractTemplateList = dominantCacheHandler.getContractTemplates();
         Collections.sort(contractTemplateList);
@@ -85,5 +81,28 @@ public class DominantCacheHandlerTest {
         assertEquals("ContractTemplate 2", contractTemplateList.get(2).getName());
         assertEquals("ContractTemplateDescription 1", contractTemplateList.get(1).getDescription());
         assertEquals("0", contractTemplateList.get(0).getRef());
+    }
+
+    @Test
+    void getCountriesTest() {
+        assertNotNull(cache.getIfPresent(CACHE_NAME));
+        List<Country> countryList = dominantCacheHandler.getCountries();
+        Collections.sort(countryList);
+        assertEquals(3, countryList.size());
+        assertEquals("CountryName 2", countryList.get(2).getName());
+        assertEquals(3, countryList.get(1).getTradeBlocs().size());
+        assertTrue(countryList.get(1).getTradeBlocs().contains("TradeBloc 2"));
+        assertEquals("AUS", countryList.get(1).getRef());
+    }
+
+    @Test
+    void getTradeBlockTest() {
+        assertNotNull(cache.getIfPresent(CACHE_NAME));
+        List<TradeBloc> tradeBlocList = dominantCacheHandler.getTradeBlocs();
+        Collections.sort(tradeBlocList);
+        assertEquals(3, tradeBlocList.size());
+        assertEquals("TradeBlocName 0", tradeBlocList.get(0).getName());
+        assertEquals("1", tradeBlocList.get(1).getRef());
+        assertEquals("TradeBlocDescription 2", tradeBlocList.get(2).getDescription());
     }
 }
