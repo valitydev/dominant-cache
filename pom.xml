@@ -22,7 +22,7 @@
         <management.port>8023</management.port>
         <exposed.ports>${server.port} ${management.port}</exposed.ports>
         <dockerfile.registry>${env.REGISTRY}</dockerfile.registry>
-        <dominant-cache-proto.version>1.6-cfafcc4</dominant-cache-proto.version>
+        <dominant-cache-proto.version>1.7-8a162c6</dominant-cache-proto.version>
     </properties>
 
     <dependencies>
