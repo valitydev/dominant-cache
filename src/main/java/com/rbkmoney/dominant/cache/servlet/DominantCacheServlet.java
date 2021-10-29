@@ -1,20 +1,27 @@
 package com.rbkmoney.dominant.cache.servlet;
 
+import com.rbkmoney.damsel.dominant.cache.DominantCacheSrv;
 import com.rbkmoney.woody.thrift.impl.http.THServiceBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
+
 import java.io.IOException;
 
 @WebServlet("/v1/dominant/cache")
-public abstract class DominantCacheServlet extends GenericServlet {
+public class DominantCacheServlet extends GenericServlet {
 
     private Servlet thriftServlet;
+
+    @Autowired
+    private DominantCacheSrv.Iface requestHandler;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        thriftServlet = servletHandler(new THServiceBuilder());
+        thriftServlet = new THServiceBuilder()
+                .build(DominantCacheSrv.Iface.class, requestHandler);
     }
 
     @Override
@@ -22,5 +29,4 @@ public abstract class DominantCacheServlet extends GenericServlet {
         thriftServlet.service(req, res);
     }
 
-    protected abstract Servlet servletHandler(THServiceBuilder builder);
 }

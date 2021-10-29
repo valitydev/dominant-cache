@@ -11,6 +11,5 @@ public class DominantCacheApplicationTest {
 
     @Test
     public void contextLoads() {
-
     }
 }
