@@ -7,7 +7,7 @@
     <parent>
         <groupId>dev.vality</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>1.0.13</version>
+        <version>1.0.20</version>
     </parent>
 
     <artifactId>dominant-cache</artifactId>
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>damsel</artifactId>
-            <version>1.596-52dbefd</version>
+            <version>1.606-f718741</version>
         </dependency>
         <dependency>
             <groupId>dev.vality.geck</groupId>
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>dominant-cache-proto</artifactId>
-            <version>1.15-ee28df2</version>
+            <version>1.19-99f38c9</version>
         </dependency>
         <!--spring-->
         <dependency>
@@ -89,7 +89,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.2.3.Final</version>
+            <version>6.2.5.Final</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -138,7 +138,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.6.4</version>
+                <version>2.7.16</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
