@@ -46,7 +46,7 @@
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>dominant-cache-proto</artifactId>
-            <version>1.15-ee28df2</version>
+            <version>1.22-f0ab9c4</version>
         </dependency>
         <!--spring-->
         <dependency>
