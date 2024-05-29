@@ -14,6 +14,8 @@ import java.util.List;
 import static dev.vality.dominant.cache.mapper.CategoriesMapper.mapCategories;
 import static dev.vality.dominant.cache.mapper.ContractTemplatesMapper.mapContractTemplates;
 import static dev.vality.dominant.cache.mapper.CountriesMapper.mapCountries;
+import static dev.vality.dominant.cache.mapper.ProvidersMapper.mapProviders;
+import static dev.vality.dominant.cache.mapper.TerminalsMapper.mapTerminals;
 import static dev.vality.dominant.cache.mapper.TradeBlocsMapper.mapTradeBlocs;
 
 @Component
@@ -51,5 +53,15 @@ public class DominantCacheHandler implements DominantCacheSrv.Iface {
     @Override
     public List<Country> getCountries() {
         return mapCountries(cache);
+    }
+
+    @Override
+    public List<Provider> getProviders() {
+        return mapProviders(cache);
+    }
+
+    @Override
+    public List<Terminal> getTerminals() {
+        return mapTerminals(cache);
     }
 }

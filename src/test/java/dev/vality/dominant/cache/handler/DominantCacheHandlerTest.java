@@ -8,19 +8,17 @@ import dev.vality.dominant.cache.constant.CashNameConstant;
 import dev.vality.dominant.cache.utils.DomainObjectTestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
+
 @SpringBootTest(classes = DominantCacheApplication.class)
-public class DominantCacheHandlerTest {
+class DominantCacheHandlerTest {
 
     @Autowired
     Cache<String, Snapshot> cache;
@@ -104,5 +102,28 @@ public class DominantCacheHandlerTest {
         assertEquals("TradeBlocName 0", tradeBlocList.get(0).getName());
         assertEquals("1", tradeBlocList.get(1).getRef());
         assertEquals("TradeBlocDescription 2", tradeBlocList.get(2).getDescription());
+    }
+
+    @Test
+    void getTerminalsTest() {
+        assertNotNull(cache.getIfPresent(CashNameConstant.CACHE_NAME));
+        List<Terminal> terminals = dominantCacheHandler.getTerminals();
+        Collections.sort(terminals);
+        assertEquals(3, terminals.size());
+        assertEquals("Terminal 2", terminals.get(2).getName());
+        assertEquals("1", terminals.get(1).getRef());
+        assertEquals("2", terminals.get(2).getProviderRef());
+        assertEquals("TerminalDescription 2", terminals.get(2).getDescription());
+    }
+
+    @Test
+    void getProvidersTest() {
+        assertNotNull(cache.getIfPresent(CashNameConstant.CACHE_NAME));
+        List<Provider> providers = dominantCacheHandler.getProviders();
+        Collections.sort(providers);
+        assertEquals(3, providers.size());
+        assertEquals("Provider 2", providers.get(2).getName());
+        assertEquals("1", providers.get(1).getRef());
+        assertEquals("ProviderDescription 2", providers.get(2).getDescription());
     }
 }

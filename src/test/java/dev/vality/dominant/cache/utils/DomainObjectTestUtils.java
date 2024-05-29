@@ -15,6 +15,8 @@ public class DomainObjectTestUtils {
             createContractTemplates(domain, i);
             createCountries(domain, i);
             createTradeBlocs(domain, i);
+            createTerminal(domain, i);
+            createProvider(domain, i);
         }
         return domain;
     }
@@ -124,6 +126,35 @@ public class DomainObjectTestUtils {
         tradeBlocObject.setData(tradeBloc);
         DomainObject domainObject = new DomainObject();
         domainObject.setTradeBloc(tradeBlocObject);
+        domain.put(reference, domainObject);
+    }
+
+    private static void createTerminal(Map<Reference, DomainObject> domain, Integer i) {
+        Reference reference = new Reference();
+        reference.setTerminal(new TerminalRef(i));
+        Terminal terminal = new Terminal();
+        terminal.setName("Terminal " + i);
+        terminal.setDescription("TerminalDescription " + i);
+        terminal.setProviderRef(new ProviderRef(i));
+        TerminalObject terminalObject = new TerminalObject();
+        terminalObject.setRef(new TerminalRef(i));
+        terminalObject.setData(terminal);
+        DomainObject domainObject = new DomainObject();
+        domainObject.setTerminal(terminalObject);
+        domain.put(reference, domainObject);
+    }
+
+    private static void createProvider(Map<Reference, DomainObject> domain, Integer i) {
+        Reference reference = new Reference();
+        reference.setProvider(new ProviderRef(i));
+        Provider terminal = new Provider();
+        terminal.setName("Provider " + i);
+        terminal.setDescription("ProviderDescription " + i);
+        ProviderObject providerObject = new ProviderObject();
+        providerObject.setRef(new ProviderRef(i));
+        providerObject.setData(terminal);
+        DomainObject domainObject = new DomainObject();
+        domainObject.setProvider(providerObject);
         domain.put(reference, domainObject);
     }
 
