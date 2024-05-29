@@ -7,7 +7,7 @@
     <parent>
         <groupId>dev.vality</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>1.0.13</version>
+        <version>2.2.0</version>
     </parent>
 
     <artifactId>dominant-cache</artifactId>
@@ -17,7 +17,7 @@
     <name>dominant-cache</name>
 
     <properties>
-        <java.version>15</java.version>
+        <java.version>17</java.version>
         <server.port>8022</server.port>
         <management.port>8023</management.port>
         <exposed.ports>${server.port} ${management.port}</exposed.ports>
@@ -25,19 +25,10 @@
     </properties>
 
     <dependencies>
-        <!--rbkmoney-->
-        <dependency>
-            <groupId>dev.vality.woody</groupId>
-            <artifactId>woody-thrift</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>dev.vality</groupId>
-            <artifactId>shared-resources</artifactId>
-        </dependency>
+        <!--dev.vality-->
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>damsel</artifactId>
-            <version>1.596-52dbefd</version>
         </dependency>
         <dependency>
             <groupId>dev.vality.geck</groupId>
@@ -46,7 +37,7 @@
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>dominant-cache-proto</artifactId>
-            <version>1.15-ee28df2</version>
+            <version>1.22-f0ab9c4</version>
         </dependency>
         <!--spring-->
         <dependency>
