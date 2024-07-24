@@ -2,6 +2,7 @@ package dev.vality.dominant.cache.mapper;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import dev.vality.damsel.domain.DomainObject;
+import dev.vality.damsel.domain.ProviderRef;
 import dev.vality.damsel.domain.Reference;
 import dev.vality.damsel.domain.TerminalObject;
 import dev.vality.damsel.domain_config.Snapshot;
@@ -13,9 +14,12 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TerminalsMapper {
+
+    public static final String EMPTY_PROVIDER_ID = "-";
 
     public static List<Terminal> mapTerminals(Cache<String, Snapshot> cache) {
         Map<Reference, DomainObject> domainObjectMap = DomainObjectMapExtractor.getDomainObjectMap(cache);
@@ -27,7 +31,11 @@ public class TerminalsMapper {
                 terminal.setRef(String.valueOf(terminalObject.getRef().getId()));
                 terminal.setName(terminalObject.getData().getName());
                 terminal.setDescription(terminalObject.getData().getDescription());
-                terminal.setProviderRef(String.valueOf(terminalObject.getData().getProviderRef().getId()));
+                ProviderRef providerRef = terminalObject.getData().getProviderRef();
+                String providerRefId = Objects.nonNull(providerRef)
+                        ? String.valueOf(providerRef.getId())
+                        : EMPTY_PROVIDER_ID;
+                terminal.setProviderRef(providerRefId);
                 terminals.add(terminal);
             }
         }
