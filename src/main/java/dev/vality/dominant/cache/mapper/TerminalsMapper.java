@@ -19,26 +19,25 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TerminalsMapper {
 
-    public static final String EMPTY_PROVIDER_ID = "-";
-
     public static List<Terminal> mapTerminals(Cache<String, Snapshot> cache) {
         Map<Reference, DomainObject> domainObjectMap = DomainObjectMapExtractor.getDomainObjectMap(cache);
         List<Terminal> terminals = new ArrayList<>();
         for (Map.Entry<Reference, DomainObject> entry : domainObjectMap.entrySet()) {
-            if (entry.getKey().isSetTerminal()) {
+            if (entry.getKey().isSetTerminal() && haveProvider(entry.getValue().getTerminal())) {
                 Terminal terminal = new Terminal();
                 TerminalObject terminalObject = entry.getValue().getTerminal();
                 terminal.setRef(String.valueOf(terminalObject.getRef().getId()));
                 terminal.setName(terminalObject.getData().getName());
                 terminal.setDescription(terminalObject.getData().getDescription());
                 ProviderRef providerRef = terminalObject.getData().getProviderRef();
-                String providerRefId = Objects.nonNull(providerRef)
-                        ? String.valueOf(providerRef.getId())
-                        : EMPTY_PROVIDER_ID;
-                terminal.setProviderRef(providerRefId);
+                terminal.setProviderRef(String.valueOf(providerRef.getId()));
                 terminals.add(terminal);
             }
         }
         return terminals;
+    }
+
+    private static boolean haveProvider(TerminalObject object) {
+        return Objects.nonNull(object.getData().getProviderRef());
     }
 }
