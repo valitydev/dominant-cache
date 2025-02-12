@@ -1,7 +1,9 @@
 package dev.vality.dominant.cache.utils;
 
 import dev.vality.damsel.domain.*;
+import dev.vality.damsel.limiter.config.*;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class DomainObjectTestUtils {
@@ -17,6 +19,7 @@ public class DomainObjectTestUtils {
             createTradeBlocs(domain, i);
             createTerminal(domain, i);
             createProvider(domain, i);
+            createLimitConfig(domain, i);
         }
         return domain;
     }
@@ -155,6 +158,30 @@ public class DomainObjectTestUtils {
         providerObject.setData(terminal);
         DomainObject domainObject = new DomainObject();
         domainObject.setProvider(providerObject);
+        domain.put(reference, domainObject);
+    }
+
+    private static void createLimitConfig(Map<Reference, DomainObject> domain, Integer i) {
+        Reference reference = new Reference();
+        reference.setLimitConfig(new LimitConfigRef(i.toString()));
+        LimitConfig limitConfig = new LimitConfig();
+        limitConfig.setProcessorType("ProcessorType " + i);
+        limitConfig.setCreatedAt(LocalDateTime.now().toString());
+        limitConfig.setStartedAt(LocalDateTime.now().toString());
+        limitConfig.setShardSize(1);
+        TimeRangeType timeRangeType = new TimeRangeType();
+        timeRangeType.setInterval(new TimeRangeTypeInterval(1000));
+        limitConfig.setTimeRangeType(timeRangeType);
+        LimitContextType limitContextType = new LimitContextType();
+        limitContextType.setWithdrawalProcessing(new LimitContextTypeWithdrawalProcessing());
+        limitConfig.setContextType(limitContextType);
+        limitConfig.setType(new LimitType());
+        LimitScopeType limitScopeType = new LimitScopeType();
+        limitScopeType.setSender(new LimitScopeEmptyDetails());
+        limitConfig.setScopes(new HashSet<>(Collections.singleton(limitScopeType)));
+        DomainObject domainObject = new DomainObject();
+        domainObject.setLimitConfig(new LimitConfigObject(new LimitConfigRef(i.toString()), limitConfig));
+
         domain.put(reference, domainObject);
     }
 

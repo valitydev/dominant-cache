@@ -5,8 +5,10 @@ import dev.vality.damsel.domain_config.Snapshot;
 import dev.vality.damsel.dominant.cache.*;
 import dev.vality.dominant.cache.mapper.CashRegisterProvidersMapper;
 import dev.vality.dominant.cache.mapper.DocumentTypesMapper;
+import dev.vality.dominant.cache.mapper.LimitConfigMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.thrift.TException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -63,5 +65,10 @@ public class DominantCacheHandler implements DominantCacheSrv.Iface {
     @Override
     public List<Terminal> getTerminals() {
         return mapTerminals(cache);
+    }
+
+    @Override
+    public List<LimitConfigObject> getLimits() {
+        return LimitConfigMapper.mapLimits(cache);
     }
 }

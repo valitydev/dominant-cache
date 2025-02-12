@@ -126,4 +126,15 @@ class DominantCacheHandlerTest {
         assertEquals("1", providers.get(1).getRef());
         assertEquals("ProviderDescription 2", providers.get(2).getDescription());
     }
+
+    @Test
+    void getLimitTest() {
+        assertNotNull(cache.getIfPresent(CashNameConstant.CACHE_NAME));
+        List<LimitConfigObject> limitConfigObjects = dominantCacheHandler.getLimits();
+        Collections.sort(limitConfigObjects);
+        assertEquals(3, limitConfigObjects.size());
+        assertEquals("ProcessorType 2", limitConfigObjects.get(2).getData().getProcessorType());
+        assertEquals("1", limitConfigObjects.get(1).getRef());
+        assertEquals(1, limitConfigObjects.get(1).getData().getShardSize());
+    }
 }
