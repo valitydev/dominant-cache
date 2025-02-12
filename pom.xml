@@ -7,7 +7,7 @@
     <parent>
         <groupId>dev.vality</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.7</version>
     </parent>
 
     <artifactId>dominant-cache</artifactId>
@@ -43,7 +43,7 @@
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>dominant-cache-proto</artifactId>
-            <version>1.22-f0ab9c4</version>
+            <version>1.23-b1afe55</version>
         </dependency>
         <!--spring-->
         <dependency>
