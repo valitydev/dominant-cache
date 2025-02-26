@@ -87,7 +87,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.2.3.Final</version>
+            <version>6.2.5.Final</version>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
@@ -145,7 +145,7 @@
                     <dependency>
                         <groupId>org.apache.maven.shared</groupId>
                         <artifactId>maven-filtering</artifactId>
-                        <version>3.1.1</version>
+                        <version>3.4.0</version>
                     </dependency>
                 </dependencies>
                 <configuration>
